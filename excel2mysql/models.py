@@ -20,29 +20,6 @@ from excel2mysql.settings import SQL_FILE_PATH
 from excel2mysql.settings import TEMPLATE_MAP
 from excel2mysql.settings import HAS_HERDER_ROW
 from excel2mysql.mysql import filter_ignore_fields
-# from .utils import parse_table_structure
-# from .utils import read_content
-
-
-def read_content(*args):
-    """Read file and return content."""
-    if len(args) <= 0:
-        raise ValueError('Invalid parameter!')
-    with open(os.path.join(*args), 'r') as _f:
-        return _f.read()
-
-
-def parse_table_structure(sql_file_path=None):
-    """Get all field names from sql creation statement."""
-    if sql_file_path is None:
-        sql_file_path = os.path.join(SQL_FILE_PATH, DEFAULT_CREATE_TABLE_FILE)
-    sql_content = read_content(sql_file_path)
-    re_fields = re.compile(r'`\S+`')
-    fields = re_fields.findall(sql_content.split('PRIMARY')[0])
-
-    fields = [each.strip('`') for each in fields]
-
-    return TableStructure(fields[0], fields[1:], None)
 
 
 class MySQLClient(object):
@@ -141,6 +118,8 @@ class MySQLClient(object):
 
     def create_table(self, force=False):
         """Create new MySQL table. Drop if it already exists."""
+        from excel2mysql.utils import parse_table_structure
+        from excel2mysql.utils import read_content
         sql_file_path = os.path.join(
             SQL_FILE_PATH, DEFAULT_CREATE_TABLE_FILE)
         table_name = parse_table_structure(sql_file_path).table_name

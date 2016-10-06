@@ -10,7 +10,7 @@ from excel2mysql.utils import validate_file_name
 
 
 def get_all_as_list(excel_file):
-    """Get data from Excel file."""
+    """Get all data from Excel file as list of tuple."""
     validate_file_name(excel_file)
     lines_of_tuples = XlsxFile(excel_file).matrix
 
@@ -18,7 +18,9 @@ def get_all_as_list(excel_file):
 
 
 def get_all_as_dict(excel_file):
-    """Migrate data from Excel file to MySQL."""
+    """Get all data from Excel file as dict.
+    field names from create.sql as key.
+    """
     validate_file_name(excel_file)
     field_names = parse_table_structure().fields
     data_dict_list = XlsxFile(excel_file, field_names).data_dict_list

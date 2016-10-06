@@ -10,11 +10,15 @@ from excel2mysql.settings import IGNORED_FIELDS_FOR_INSERT
 
 
 def build_drop_sql(table_name):
+    """Build drop table SQL statement with table name."""
     return TEMPLATE_MAP.get('DROP_TABLE') % table_name
 
 
 def filter_ignore_fields(original_fields):
-    """Remove fields which are unnecessary for insert statement."""
+    """Remove fields which are unnecessary for insert statement.
+    For example:
+        `id`, `created_at`, and `updated_at` will be filtered.
+    """
     return [field for field in original_fields
             if field not in IGNORED_FIELDS_FOR_INSERT]
 
@@ -29,5 +33,4 @@ def build_dict_style_insert_sql(table_name, fields):
     insert_statement = TEMPLATE_MAP.get('INSERT_INTO') % (table_name,
                                                           columns_str,
                                                           values_str)
-
     return insert_statement
