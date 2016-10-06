@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from excel2mysql import excel2mysql
+from __future__ import (print_function, unicode_literals,
+                        absolute_import, with_statement)
+
+from excel2mysql import operator
 
 test_xlsx_file = 'test.xlsx'
 
 
-def test_extract_all_excel_data():
-    out = excel2mysql.extract_all_excel_data(test_xlsx_file)
-    assert len(out) == 11
-    assert len(out[0]) == 5
+def test_migration():
+    operator.migrate()
