@@ -1,2 +1,4 @@
-# excel2mysql
-Import data from Excel (xlsx file) to MySQL.
+excel2mysql
+===========
+
+Migrate data from Excel (xlsx file) to MySQL.
