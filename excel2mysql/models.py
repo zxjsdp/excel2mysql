@@ -97,10 +97,6 @@ class MySQLClient(object):
 
     def execute_many_by_dict(self, statement, data_dict):
         """Execute SQL statement, create table, insert, ..."""
-        print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`')
-        print(statement)
-        print(data_dict)
-        print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`')
         if not statement or len(data_dict) <= 0:
             raise SyntaxWarning("No valid SQL statement!")
         elif not isinstance(data_dict[0], dict):
@@ -186,8 +182,8 @@ class XlsxFile(object):
             info_dict = {}
             if len(fields_for_insert) != len(row):
                 raise ValueError(
-                    "Size of Excel row does not match SQL field names. "
-                    "(index: %d; row: %s; fields: %s)" %
+                    "Size of Excel row does not match SQL field names.\n"
+                    "| index: %d\n| row: %s\n| fields: %s\n)" %
                     (index, row, fields_for_insert))
             for field_index, field in enumerate(fields_for_insert):
                 info_dict[field] = row[field_index]
