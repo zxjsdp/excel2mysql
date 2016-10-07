@@ -32,10 +32,3 @@ def migrate():
             table_name=table_structure.table_name,
             fields=table_structure.fields),
         data_dict)
-
-
-def main():
-    pass
-
-if __name__ == '__main__':
-    main()
