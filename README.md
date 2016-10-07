@@ -12,11 +12,17 @@ Usage
 3. Change Excel settings in `/path/to/excel2mysql/excel2mysql/settings/excel_config.py`.
 4. Make sure you can connect to target MySQL server correctly.
 5. Run the script:
-    - Option 1
+
+    Option 1
+    
         $ python excel2mysql
-    - Option 2
+        
+    Option 2
+    
         $ cd /path/to/excel2mysql/
         $ python main.py
-    - Option 3
+        
+    Option 3
+    
         $ cd /path/to/excel2mysql/
         $ python -m excel2mysql
